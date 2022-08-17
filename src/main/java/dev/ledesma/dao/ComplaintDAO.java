@@ -11,6 +11,4 @@ public interface ComplaintDAO {
     Complaint updateComplaint(Complaint complaint);
     List<Complaint> getAllComplaints(PriorityStatus status);
 
-
-
 }
