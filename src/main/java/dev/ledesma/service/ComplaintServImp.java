@@ -12,33 +12,30 @@ public class ComplaintServImp implements ComplaintService{
     @Override
     public Complaint createComplaint(Complaint complaint) {
 
-        if(complaint == null){
-            throw new RuntimeException("Complaint cannot be empty");
+        if(this.complaintDAO.createComplaint(complaint) == null){
+            throw new RuntimeException("Could not create new complaint!");
         }else{
-            Complaint savedComplaint = this.complaintDAO.createComplaint(complaint);
-            return savedComplaint;
+            return this.complaintDAO.createComplaint(complaint);
         }
     }
 
     @Override
     public Complaint updateComplaint(Complaint complaint) {
 
-        if(complaint == null){
-            throw new RuntimeException("Complaint cannot be updated");
+        if(this.complaintDAO.updateComplaint(complaint) == null){
+            throw new RuntimeException("Could not update complaint!");
         }else{
-            Complaint savedComplaint = this.complaintDAO.updateComplaint(complaint);
-            return savedComplaint;
+            return this.complaintDAO.updateComplaint(complaint);
         }
     }
 
     @Override
     public List<Complaint> getAllComplaints(PriorityStatus status) {
 
-        if(status == null){
-            throw new RuntimeException("Status cannot be empty");
+        if(this.complaintDAO.getAllComplaints(status).size() == 0){
+            throw new RuntimeException("Could not retrieve all complaints!");
         }else{
-            List<Complaint> complaints = this.complaintDAO.getAllComplaints(status);
-            return complaints;
+            return this.complaintDAO.getAllComplaints(status);
         }
     }
 }
