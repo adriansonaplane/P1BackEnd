@@ -1,6 +1,7 @@
 package dev.ledesma.service;
 
 import dev.ledesma.dao.ComplaintDAO;
+import dev.ledesma.dao.ComplaintPostgresDAO;
 import dev.ledesma.entity.Complaint;
 import dev.ledesma.entity.PriorityStatus;
 
@@ -9,6 +10,11 @@ import java.util.List;
 public class ComplaintServImp implements ComplaintService{
 
     private ComplaintDAO complaintDAO;
+
+    public ComplaintServImp(ComplaintPostgresDAO complaintPostgresDAO) {
+        this.complaintDAO = complaintPostgresDAO;
+    }
+
     @Override
     public Complaint createComplaint(Complaint complaint) {
 

@@ -8,6 +8,11 @@ import java.util.List;
 
 public class MeetingServImp implements MeetingService {
     private MeetingDAO meetingDAO;
+
+    public MeetingServImp(MeetingDAO meetingDAO) {
+        this.meetingDAO = meetingDAO;
+    }
+
     @Override
     public Meeting createMeeting(Meeting meeting) {
 

@@ -1,9 +1,19 @@
 package dev.ledesma.app;
 
+import dev.ledesma.dao.ComplaintDAO;
+import dev.ledesma.dao.ComplaintPostgresDAO;
+import dev.ledesma.dao.MeetingPostgresDAO;
+import dev.ledesma.dao.UserPostgresDAO;
+import dev.ledesma.entity.Meeting;
 import dev.ledesma.handler.*;
+import dev.ledesma.service.*;
 import io.javalin.Javalin;
 
 public class App {
+    public static ComplaintService complaintService = new ComplaintServImp(new ComplaintPostgresDAO());
+    public static MeetingService meetingService = new MeetingServImp(new MeetingPostgresDAO());
+    public static UserService userService = new UserServImp(new UserPostgresDAO());
+
     public static void main(String[] args) {
 
         Javalin app = Javalin.create();
@@ -15,7 +25,6 @@ public class App {
         ModifyUserHandler modifyUserHandler = new ModifyUserHandler();
         ModifyComplaintHandler modifyComplaintHandler = new ModifyComplaintHandler();
 
-        RetrieveComplaintHandler retrieveComplaintHandler = new RetrieveComplaintHandler();
         RetrieveMeetingHandler retrieveMeetingHandler = new RetrieveMeetingHandler();
 
         //Report Complaints

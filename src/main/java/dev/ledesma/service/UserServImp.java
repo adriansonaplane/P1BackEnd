@@ -5,6 +5,11 @@ import dev.ledesma.entity.User;
 
 public class UserServImp implements UserService{
     private UserDAO userDAO;
+
+    public UserServImp(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     @Override
     public User createUser(User user) {
 
