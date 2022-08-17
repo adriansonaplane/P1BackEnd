@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Meeting {
 
     private int id;
-    private String date;
+    private int date;
     private int time;
     private String location;
 
@@ -17,11 +17,11 @@ public class Meeting {
         this.id = id;
     }
 
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
