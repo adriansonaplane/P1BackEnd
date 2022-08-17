@@ -21,8 +21,8 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, complaint.getCategory());
             ps.setString(2, complaint.getDescription());
-            ps.setString(3, complaint.getStatus().toString());
-            ps.setInt(4, complaint.getMeetingId());
+            ps.setString(3, PriorityStatus.UNREVIEWED.toString());
+            ps.setInt(4, -1);
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
