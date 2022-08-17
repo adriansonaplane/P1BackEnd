@@ -21,7 +21,7 @@ public class UserServImp implements UserService{
     }
 
     @Override
-    public User modifyUser(User user) {
+    public User updateUser(User user) {
 
         if(this.userDAO.modifyUser(user) == null){
             throw new RuntimeException("Could not update user!");
