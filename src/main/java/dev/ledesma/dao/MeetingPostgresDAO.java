@@ -17,7 +17,7 @@ public class MeetingPostgresDAO implements MeetingDAO{
     public Meeting createMeeting(Meeting meeting) {
 
         try(Connection conn = ConnectionUtility.createConnection()){
-            String sql = "insert into meeting values(default, ?, ?, ?)";
+            String sql = "insert into meeting values (default, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, meeting.getDate());
             ps.setInt(2, meeting.getTime());
@@ -26,13 +26,16 @@ public class MeetingPostgresDAO implements MeetingDAO{
 
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
-            int key = rs.getInt("id");
+            int key = rs.getInt("meetingid");
             meeting.setId(key);
             return meeting;
+
         }catch(SQLException e ){
+
             e.printStackTrace();
             logger.error("Could Not Create Meeting" + meeting, e);
             return null;
+
         }
     }
 

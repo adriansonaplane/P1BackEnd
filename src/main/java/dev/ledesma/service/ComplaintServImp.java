@@ -18,10 +18,12 @@ public class ComplaintServImp implements ComplaintService{
     @Override
     public Complaint createComplaint(Complaint complaint) {
 
-        if(this.complaintDAO.createComplaint(complaint) == null){
+        Complaint createdComplaint = this.complaintDAO.createComplaint(complaint);
+
+        if( createdComplaint == null){
             throw new RuntimeException("Could not create new complaint!");
         }else{
-            return this.complaintDAO.createComplaint(complaint);
+            return createdComplaint;
         }
     }
 

@@ -17,17 +17,15 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
     public Complaint createComplaint(Complaint complaint) {
 
         try(Connection conn = ConnectionUtility.createConnection()) {
-            String sql = "insert into complaint values (default, ?, ?, ?, ?)";
+            String sql = "insert into complaint values (default, ?, ?, 'UNREVIEWED', null)";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, complaint.getCategory());
             ps.setString(2, complaint.getDescription());
-            ps.setString(3, PriorityStatus.UNREVIEWED.toString());
-            ps.setInt(4, -1);
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
-            int key = rs.getInt("id");
+            int key = rs.getInt("complaintid");
             complaint.setId(key);
             return complaint;
 
