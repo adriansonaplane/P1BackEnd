@@ -1,10 +1,12 @@
 package dev.ledesma.app;
 
-import dev.ledesma.dao.ComplaintDAO;
+import com.google.gson.Gson;
 import dev.ledesma.dao.ComplaintPostgresDAO;
 import dev.ledesma.dao.MeetingPostgresDAO;
 import dev.ledesma.dao.UserPostgresDAO;
-import dev.ledesma.entity.Meeting;
+
+import dev.ledesma.dto.LoginCredential;
+import dev.ledesma.entity.User;
 import dev.ledesma.handler.*;
 import dev.ledesma.service.*;
 import io.javalin.Javalin;
@@ -13,6 +15,7 @@ public class App {
     public static ComplaintService complaintService = new ComplaintServImp(new ComplaintPostgresDAO());
     public static MeetingService meetingService = new MeetingServImp(new MeetingPostgresDAO());
     public static UserService userService = new UserServImp(new UserPostgresDAO());
+    public static LoginService loginService = new LoginServiceImp(new UserPostgresDAO());
 
     public static void main(String[] args) {
 
@@ -47,6 +50,15 @@ public class App {
         app.patch("/user", modifyUserHandler);
         //Request to Speak at a specific meeting;
 
+        app.post("/login", ctx -> {
+            String body = ctx.body();
+            Gson gson = new Gson();
+            LoginCredential credentials = gson.fromJson(body, LoginCredential.class);
+
+            User user = loginService.validateUser(credentials.getUsername(), credentials.getPassword());
+            String userJson = gson.toJson(user);
+            ctx.result(userJson);
+        });
 
 
         app.start();

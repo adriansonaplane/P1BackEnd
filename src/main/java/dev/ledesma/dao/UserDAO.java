@@ -7,5 +7,7 @@ public interface UserDAO {
     User createUser(User user);
     User modifyUser(User user);
 
+    User getUser(String username);
+
 
 }
