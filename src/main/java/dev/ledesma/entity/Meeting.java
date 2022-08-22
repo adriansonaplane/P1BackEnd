@@ -9,6 +9,14 @@ public class Meeting {
     private int time;
     private String location;
 
+    public Meeting(){}
+    public Meeting(int id, int date, int time, String location) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+    }
+
     public int getId() {
         return id;
     }

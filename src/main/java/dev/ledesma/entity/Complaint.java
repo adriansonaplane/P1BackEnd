@@ -10,6 +10,15 @@ public class Complaint {
     private PriorityStatus status;
     private int meetingId;
 
+    public Complaint(){    }
+    public Complaint(int id, String category, String description, PriorityStatus status, int meetingId) {
+        this.id = id;
+        this.category = category;
+        this.description = description;
+        this.status = status;
+        this.meetingId = meetingId;
+    }
+
     public int getId() {
         return id;
     }

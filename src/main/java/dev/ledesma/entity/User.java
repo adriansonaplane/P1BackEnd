@@ -10,6 +10,16 @@ public class User {
     private String lastname;
     private UserTitle title;
 
+    public User(){}
+    public User(int id, String username, String password, String firstname, String lastname, UserTitle title) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }

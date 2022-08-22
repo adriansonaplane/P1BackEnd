@@ -41,7 +41,8 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
     public Complaint updateComplaint(Complaint complaint) {
 
         try(Connection conn = ConnectionUtility.createConnection()){
-            String sql ="update complaint set status = ?, meetingid = ? where id =?";
+
+            String sql ="update complaint set status = CAST(? AS prioritystatus), meetingid = ? where id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, complaint.getStatus().toString());
             ps.setInt(2, complaint.getMeetingId());
@@ -49,6 +50,7 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
             ps.executeUpdate();
 
             return complaint;
+
         }catch(SQLException e){
             e.printStackTrace();
             logger.error("Could Not Update Complaint" + complaint, e );
@@ -60,7 +62,7 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
     public List<Complaint> getAllComplaints(PriorityStatus status) {
 
         try(Connection conn = ConnectionUtility.createConnection()) {
-            String sql ="select * from complaint where status = ?";
+            String sql ="select * from complaint where status = CAST(? AS prioritystatus)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, status.toString());
             ResultSet rs = ps.executeQuery();

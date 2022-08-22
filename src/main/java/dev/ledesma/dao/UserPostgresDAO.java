@@ -13,13 +13,12 @@ public class UserPostgresDAO implements UserDAO{
     @Override
     public User createUser(User user) {
         try(Connection conn = ConnectionUtility.createConnection()){
-            String sql = "insert into account values(default, ?, ?, ?, ?, ?)";
+            String sql = "insert into account values(default, ?, ?, ?, ?, 'PENDING')";
             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getFirstname());
             ps.setString(4, user.getLastname());
-            ps.setString(5, UserTitle.PENDING.toString());
             ps.execute();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -39,7 +38,7 @@ public class UserPostgresDAO implements UserDAO{
     public User modifyUser(User user) {
 
         try(Connection conn = ConnectionUtility.createConnection()){
-            String sql ="update complaint set title = ? where id =?";
+            String sql ="update account set title = CAST(? AS userrank) where id =?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, user.getTitle().toString());
             ps.setInt(2, user.getId());
@@ -48,7 +47,7 @@ public class UserPostgresDAO implements UserDAO{
             return user;
         }catch(SQLException e){
             e.printStackTrace();
-            logger.error("Could Not Update Complaint" + user, e );
+            logger.error("Could Not Update Account" + user, e );
             return null;
         }
     }
