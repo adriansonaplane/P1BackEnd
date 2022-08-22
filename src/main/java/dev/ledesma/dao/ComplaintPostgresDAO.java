@@ -25,7 +25,7 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
 
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
-            int key = rs.getInt("complaintid");
+            int key = rs.getInt("id");
             complaint.setId(key);
             return complaint;
 

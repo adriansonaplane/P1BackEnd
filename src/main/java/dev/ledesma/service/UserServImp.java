@@ -13,20 +13,23 @@ public class UserServImp implements UserService{
     @Override
     public User createUser(User user) {
 
-        if(this.userDAO.createUser(user) == null){
+        User createdUser = this.userDAO.createUser(user);
+        if(createdUser == null){
             throw new RuntimeException("Could not create user!");
         }else{
-            return this.userDAO.createUser(user);
+            return createdUser;
         }
     }
 
     @Override
     public User updateUser(User user) {
 
-        if(this.userDAO.modifyUser(user) == null){
+        User updatedUser = this.userDAO.modifyUser(user);
+
+        if(updatedUser == null){
             throw new RuntimeException("Could not update user!");
         }else{
-            return this.userDAO.modifyUser(user);
+            return updatedUser;
         }
     }
 }

@@ -16,20 +16,23 @@ public class MeetingServImp implements MeetingService {
     @Override
     public Meeting createMeeting(Meeting meeting) {
 
-        if(this.meetingDAO.createMeeting(meeting) == null){
+        Meeting createdMeeting = this.meetingDAO.createMeeting(meeting);
+
+        if(createdMeeting == null){
             throw new RuntimeException("Could not create new meeting!");
         }else{
-            return this.meetingDAO.createMeeting(meeting);
+            return createdMeeting;
         }
     }
 
     @Override
     public List<Meeting> getAllMeetings() {
 
-        if(this.meetingDAO.getAllMeetings().size() == 0){
+        List<Meeting> meetings = this.meetingDAO.getAllMeetings();
+        if(meetings.size() == 0){
             throw new RuntimeException("Could not retrieve all meetings!");
         }else{
-            return this.meetingDAO.getAllMeetings();
+            return meetings;
         }
     }
 }

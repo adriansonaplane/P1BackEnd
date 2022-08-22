@@ -30,20 +30,24 @@ public class ComplaintServImp implements ComplaintService{
     @Override
     public Complaint updateComplaint(Complaint complaint) {
 
-        if(this.complaintDAO.updateComplaint(complaint) == null){
+        Complaint updatedComplaint = this.complaintDAO.updateComplaint(complaint);
+
+        if(updatedComplaint == null){
             throw new RuntimeException("Could not update complaint!");
         }else{
-            return this.complaintDAO.updateComplaint(complaint);
+            return updatedComplaint;
         }
     }
 
     @Override
     public List<Complaint> getAllComplaints(PriorityStatus status) {
 
-        if(this.complaintDAO.getAllComplaints(status).size() == 0){
+        List<Complaint> complaints = this.complaintDAO.getAllComplaints(status);
+
+        if(complaints.size() == 0){
             throw new RuntimeException("Could not retrieve all complaints!");
         }else{
-            return this.complaintDAO.getAllComplaints(status);
+            return complaints;
         }
     }
 }

@@ -37,6 +37,19 @@ public class UserPostgresDAO implements UserDAO{
 
     @Override
     public User modifyUser(User user) {
-        return null;
+
+        try(Connection conn = ConnectionUtility.createConnection()){
+            String sql ="update complaint set title = ? where id =?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getTitle().toString());
+            ps.setInt(2, user.getId());
+            ps.executeUpdate();
+
+            return user;
+        }catch(SQLException e){
+            e.printStackTrace();
+            logger.error("Could Not Update Complaint" + user, e );
+            return null;
+        }
     }
 }

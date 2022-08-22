@@ -26,7 +26,7 @@ public class MeetingPostgresDAO implements MeetingDAO{
 
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
-            int key = rs.getInt("meetingid");
+            int key = rs.getInt("id");
             meeting.setId(key);
             return meeting;
 
@@ -50,10 +50,10 @@ public class MeetingPostgresDAO implements MeetingDAO{
 
             while(rs.next()){
                 Meeting meeting = new Meeting();
-                meeting.setId((rs.getInt("meetingid")));
+                meeting.setId((rs.getInt("id")));
                 meeting.setDate(rs.getInt("meetingdate"));
                 meeting.setTime(rs.getInt("meetingtime"));
-                meeting.setLocation(rs.getString("meetinglocation"));
+                meeting.setLocation(rs.getString("location"));
                 meetings.add(meeting);
             }
             return meetings;
