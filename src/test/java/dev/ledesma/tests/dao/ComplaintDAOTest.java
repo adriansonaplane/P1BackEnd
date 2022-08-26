@@ -37,7 +37,7 @@ class ComplaintDAOTest {
     @Test
     void getAllComplaints() {
 
-        List<Complaint> complaintList = complaintDAO.getAllComplaints(PriorityStatus.UNREVIEWED);
+        List<Complaint> complaintList = complaintDAO.getAllComplaints();
         System.out.println(complaintList);
         Assertions.assertNotNull(complaintList);
 

@@ -9,5 +9,5 @@ public interface ComplaintService {
 
     Complaint createComplaint(Complaint complaint);
     Complaint updateComplaint(Complaint complaint);
-    List<Complaint> getAllComplaints(PriorityStatus status);
+    List<Complaint> getAllComplaints();
 }

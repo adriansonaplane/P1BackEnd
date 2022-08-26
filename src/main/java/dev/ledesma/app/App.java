@@ -32,6 +32,7 @@ public class App {
         ModifyComplaintHandler modifyComplaintHandler = new ModifyComplaintHandler();
 
         RetrieveMeetingHandler retrieveMeetingHandler = new RetrieveMeetingHandler();
+        RetrieveComplaintHandler retrieveComplaintHandler = new RetrieveComplaintHandler();
 
         //Report Complaints
         app.post("/complaint", createComplaintHandler);
@@ -41,8 +42,8 @@ public class App {
         app.patch("/complaint/{id}", modifyComplaintHandler);
         //Create Meetings
         app.post("/meeting", createMeetingHandler);
-        //Attach Complaints to Meetings
         app.patch("/complaint", modifyComplaintHandler);
+        app.get("/complaint", retrieveComplaintHandler);
 
         //Request an Accont
         app.post("/user", createUserHandler);

@@ -42,14 +42,26 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
 
         try(Connection conn = ConnectionUtility.createConnection()){
 
-            String sql ="update complaint set status = CAST(? AS prioritystatus), meetingid = ? where id = ?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, complaint.getStatus().toString());
-            ps.setInt(2, complaint.getMeetingId());
-            ps.setInt(3, complaint.getId());
-            ps.executeUpdate();
+            if (complaint.getMeetingId() == 0) {
+                String sql ="update complaint set status = CAST(? AS prioritystatus) where id = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, complaint.getStatus().toString());
+                ps.setInt(2, complaint.getId());
+                ps.executeUpdate();
 
-            return complaint;
+                return complaint;
+            }else{
+                String sql ="update complaint set status = CAST(? AS prioritystatus), meetingid = ? where id = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, complaint.getStatus().toString());
+                ps.setInt(2, complaint.getMeetingId());
+                ps.setInt(3, complaint.getId());
+                ps.executeUpdate();
+
+                return complaint;
+            }
+
+
 
         }catch(SQLException e){
             e.printStackTrace();
@@ -59,30 +71,33 @@ public class ComplaintPostgresDAO implements ComplaintDAO{
     }
 
     @Override
-    public List<Complaint> getAllComplaints(PriorityStatus status) {
+    public List<Complaint> getAllComplaints() {
 
-        try(Connection conn = ConnectionUtility.createConnection()) {
-            String sql ="select * from complaint where status = CAST(? AS prioritystatus)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, status.toString());
-            ResultSet rs = ps.executeQuery();
+            try (Connection conn = ConnectionUtility.createConnection()) {
+                String sql = "select * from complaint";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
 
-            List<Complaint> complaints = new ArrayList<>();
+                List<Complaint> complaints = new ArrayList<>();
 
-            while(rs.next()){
-                Complaint complaint = new Complaint();
-                complaint.setId(rs.getInt("id"));
-                complaint.setCategory(rs.getString("category"));
-                complaint.setDescription(rs.getString("description"));
-                complaint.setStatus(PriorityStatus.valueOf(rs.getString("status")));
-                complaint.setMeetingId(rs.getInt("meetingid"));
-                complaints.add(complaint);
-            }return complaints;
+                while (rs.next()) {
+                    Complaint complaint = new Complaint();
+                    complaint.setId(rs.getInt("id"));
+                    complaint.setCategory(rs.getString("category"));
+                    complaint.setDescription(rs.getString("description"));
+                    complaint.setStatus(PriorityStatus.valueOf(rs.getString("status")));
+                    complaint.setMeetingId(rs.getInt("meetingid"));
+                    complaints.add(complaint);
+                }
+                return complaints;
 
-        }catch(SQLException e ){
-            e.printStackTrace();
-            logger.error("Could Not Retrieve All Complaints" + status, e);
-            return null;
-        }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                logger.error("Could Not Retrieve All Complaints", e);
+                return null;
+            }
+
+
+
     }
 }

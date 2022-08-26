@@ -40,9 +40,9 @@ public class ComplaintServImp implements ComplaintService{
     }
 
     @Override
-    public List<Complaint> getAllComplaints(PriorityStatus status) {
+    public List<Complaint> getAllComplaints() {
 
-        List<Complaint> complaints = this.complaintDAO.getAllComplaints(status);
+        List<Complaint> complaints = this.complaintDAO.getAllComplaints();
 
         if(complaints.size() == 0){
             throw new RuntimeException("Could not retrieve all complaints!");
