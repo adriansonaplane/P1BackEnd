@@ -42,6 +42,7 @@ public class App {
         app.patch("/complaint/{id}", modifyComplaintHandler);
         //Create Meetings
         app.post("/meeting", createMeetingHandler);
+        //View and Review Complaint
         app.patch("/complaint", modifyComplaintHandler);
         app.get("/complaint", retrieveComplaintHandler);
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.ledesma.tests.service.ComplaintServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-29T02:08:31" hostname="GREYBOX" time="0.352">
+  <properties/>
+  <testcase name="updateComplaint()" classname="dev.ledesma.tests.service.ComplaintServiceTest" time="0.352"/>
+  <system-out><![CDATA[Complaint{id=6, category='category', description='description', status=HIGH, meetingId=1}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
