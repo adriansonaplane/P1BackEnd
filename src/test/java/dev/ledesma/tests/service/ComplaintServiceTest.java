@@ -44,11 +44,11 @@ class ComplaintServiceTest {
         allComplaints.add(complaint5);
 
         Complaint complaint6 = new Complaint(6, "category", "description", PriorityStatus.UNREVIEWED, 0);
-//        Mockito.when(complaintDAO.getAllComplaints()).thenReturn(allComplaints);
-//        Mockito.when(complaintDAO.createComplaint(complaint6)).thenReturn(complaint6);
+//        Mockito.when(this.complaintDAO.getAllComplaints()).thenReturn(allComplaints);
+//        Mockito.when(this.complaintDAO.createComplaint(complaint6)).thenReturn(complaint6);
         complaint6.setStatus(PriorityStatus.HIGH);
         complaint6.setMeetingId(1);
-        Mockito.when(complaintDAO.updateComplaint(complaint6)).thenReturn(complaint6);
+        Mockito.when(this.complaintDAO.updateComplaint(complaint6)).thenReturn(complaint6);
 
         complaintService = new ComplaintServImp(complaintDAO);
 
