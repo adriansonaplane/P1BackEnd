@@ -22,7 +22,7 @@ class ComplaintDAOTest {
     void createComplaint() {
 
         Complaint complaint = new Complaint(0, "category", "description", PriorityStatus.UNREVIEWED, 0);
-        Assertions.assertNotNull(complaintDAO.createComplaint(complaint));
+        Assertions.assertNotNull(this.complaintDAO.createComplaint(complaint));
 
     }
 

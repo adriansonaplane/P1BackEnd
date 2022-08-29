@@ -1,1 +1,2 @@
-[Complaint{id=6, category='category', description='description', status=HIGH, meetingId=1}
+ç[Complaint{id=1, category='category', description='description', status=UNREVIEWED, meetingId=1}, Complaint{id=2, category='category', description='description', status=UNREVIEWED, meetingId=1}, Complaint{id=3, category='category', description='description', status=UNREVIEWED, meetingId=1}, Complaint{id=4, category='category', description='description', status=UNREVIEWED, meetingId=1}, Complaint{id=5, category='category', description='description', status=UNREVIEWED, meetingId=1}]
+null
