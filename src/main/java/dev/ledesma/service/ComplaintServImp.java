@@ -11,8 +11,8 @@ public class ComplaintServImp implements ComplaintService{
 
     private ComplaintDAO complaintDAO;
 
-    public ComplaintServImp(ComplaintPostgresDAO complaintPostgresDAO) {
-        this.complaintDAO = complaintPostgresDAO;
+    public ComplaintServImp(ComplaintDAO complaintDAO) {
+        this.complaintDAO = complaintDAO;
     }
 
     @Override
