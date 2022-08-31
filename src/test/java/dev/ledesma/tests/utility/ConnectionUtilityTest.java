@@ -15,7 +15,7 @@ class ConnectionUtilityTest {
     void createConnection() {
 
         try{
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://ledesma-sql-server.postgres.database.azure.com:5432/projectone?user=adrianledesma&password=uvSaPZ6K8QdXByX&ssl=false");
+            Connection conn = DriverManager.getConnection(System.getenv("AZURE_DB"));
             System.out.println(conn);
             Assertions.assertNotNull(conn);
         } catch (SQLException e){
