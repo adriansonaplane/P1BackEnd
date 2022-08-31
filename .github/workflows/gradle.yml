@@ -7,7 +7,7 @@
 
 name: Java CI with Gradle
 env:
-  AZURE_DB: ${{secrets.AZURE_DB}}
+  Azure: ${{secrets.AZURE_DB}}
 
 on:
   push:
